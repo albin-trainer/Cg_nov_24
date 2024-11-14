@@ -1,9 +1,15 @@
 package com.example.model;
-//ProductCatalogue
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Transient;
+@Entity//maps with the Product table (MANDATORY)
 public class Product {
+	@Id//mandatory
 private int prodId;
 private String prodName;
 private float price;
+@Transient //this field wont map to the table
 private String port;
 //{"prodId":101,"prodName":"ssss","price":1000}
 public Product() {

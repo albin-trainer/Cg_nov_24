@@ -30,11 +30,12 @@ public ResponseEntity<String> testOrder(){
 	}
 	@Autowired
 	private RestTemplate restTemplate;
-	
 	@GetMapping("orderLoadBal/{pid}/{quantity}")
 	public ResponseEntity<OrderDetails> orderWithLoadBal(@PathVariable  int pid,@PathVariable  int quantity){
 	//	OrderDetails orderDetails=orderService.order(pid, quantity);;
 		String url="http://product-catalogue/products/"+pid;
+		//here it will get all the list of product-catalogue instances from Eureka
+		//loadbalancing is done by the resttemplate 
 		OrderDetails orderDetails=restTemplate.getForObject(url, OrderDetails.class);
 		return new ResponseEntity<OrderDetails>(orderDetails,HttpStatus.OK);
 	}

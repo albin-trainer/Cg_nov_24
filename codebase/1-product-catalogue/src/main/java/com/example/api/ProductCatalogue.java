@@ -6,6 +6,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.model.Product;
@@ -29,4 +31,12 @@ public ResponseEntity<Product> searchProduct( @PathVariable  int pid){
 	products.stream().filter(p->p.getProdId()==pid).findFirst().get();
 	return new ResponseEntity<Product>(product,HttpStatus.OK);
 }
+@PostMapping("/products")
+public ResponseEntity<Product> addProduct(@RequestBody  Product p){
+	 Product product= productService.addNewProductService(p);
+	 return new ResponseEntity<Product>(product,HttpStatus.CREATED);
+}
+
+
+
 }
