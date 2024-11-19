@@ -1,0 +1,17 @@
+GATE-way port - 8080
+
+order-service- 8000
+
+product-catalogue - 8100,8101,8102 ....
+
+  URL to access order-service directly ....
+ 
+  http://localhost:8000/orderLoadBal/101/5
+
+  NOW i need to access thru gate-way
+  http://localhost:8080/2-ORDER-SERVICE/orderLoadBal/101/5
+----------------------------------
+ URL to access product-catalogue directly
+http://localhost:8100/products/101
+ URL to access product-catalogue thru gate-way
+ http://localhost:8080/PRODUCT-CATALOGUE/products/101
