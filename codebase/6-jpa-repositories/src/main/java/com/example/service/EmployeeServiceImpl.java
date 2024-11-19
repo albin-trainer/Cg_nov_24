@@ -4,7 +4,11 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.example.dto.EmployeeDto;
+import com.example.entity.Department;
 import com.example.entity.Employee;
+import com.example.repository.DepartmentRepository;
 import com.example.repository.EmployeeRepository;
 import jakarta.transaction.Transactional;
 @Service
@@ -12,8 +16,16 @@ import jakarta.transaction.Transactional;
 public class EmployeeServiceImpl implements EmployeeService {
 	@Autowired
 	private EmployeeRepository empRepo;
-	public Employee addNewEmployeeService(Employee e) {
-		return empRepo.save(e);
+	@Autowired
+	private DepartmentRepository deptRepo;
+	public Employee addNewEmployeeService(EmployeeDto e) {
+		Department d=deptRepo.findById(e.getDeptId()).orElseThrow(()-> new RuntimeException("Check dept id"));
+		Employee emp=new Employee();
+		emp.setEmpName(e.getEmpName());
+		emp.setDesignation(e.getDesignation());
+		emp.setDept(d);
+		//return empRepo.save(e);
+		return empRepo.save(emp);
 	}
 	public Employee searchByEmpIdService(int eid) {
 //		 Optional<Employee> empOptional =empRepo.findById(eid);

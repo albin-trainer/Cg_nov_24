@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.dto.EmployeeDto;
 import com.example.entity.Employee;
 import com.example.service.EmployeeService;
 
@@ -23,7 +24,7 @@ public class EmployeeApi {
 	@Autowired
 	private EmployeeService employeeService;
 	@PostMapping
-  public ResponseEntity<Employee> addEmployee(@RequestBody Employee e){
+  public ResponseEntity<Employee> addEmployee(@RequestBody EmployeeDto e){
 	  return new ResponseEntity<Employee>(employeeService.addNewEmployeeService(e),HttpStatus.CREATED);
   }
 	@GetMapping("/{eid}")

@@ -4,6 +4,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import lombok.Data;
@@ -20,5 +22,7 @@ public class Employee {
 private int empId;
 private String empName;
 private String designation;
-
+@ManyToOne //mandatory
+@JoinColumn(name="deptId") //optional
+private Department dept;
 }
