@@ -8,11 +8,9 @@ public class OrderServiceImpl implements OrderService{
 	@Override
 	public OrderDetails order(int pid, int quantity) {
 		String url="http://localhost:8100/products/"+pid;
-		
 		RestTemplate template=new RestTemplate();
 		OrderDetails orderDetails=
 				template.getForObject(url, OrderDetails.class);
-		
 		//orderDetails.setQuantity(quantity);
 		return orderDetails;
 	}
